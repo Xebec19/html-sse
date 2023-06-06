@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example webpage</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      const eventSource = new EventSource("http://localhost:3000/sse");
+      const root = document.getElementById("root");
+
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        // Handle the received SSE event data
+        root.innerHTML = data;
+      };
+    </script>
+  </body>
+</html>
